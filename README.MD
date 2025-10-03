@@ -36,21 +36,21 @@ Build Instructions
     # Create directory and change dir
     mkdir -p build && cd build
     # Install dependencies
-    '''
-    $> conan install .. --build=missing
-    '''
+    ```
+    conan install .. --build=missing
+    ```
     # Build project
-    '''
-    $> cmake --build build
-    '''
+    ```
+    cmake --build build
+    ```
     # Run the application
-    '''
-    $> ./build/DatabaseApp/Release/bin/DatabaseApp
-    '''
+    ```
+    ./build/DatabaseApp/Release/bin/DatabaseApp
+    ```
 2. Run Unit Tests
-    '''
-    $> ctest --test-dir build --output-on-failure
-    '''
+    ```
+    ctest --test-dir build --output-on-failure
+    ```
 VSCode DevContainer
 ------------------
 

@@ -1,0 +1,16 @@
+{
+  "name": "DatabaseApp Dev Container",
+  "image": "dbapp-dev",
+  "remoteUser": "root",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "llvm-vs-code-extensions.vscode-clangd"  // <-- clangd extension
+      ]
+    }
+  },
+  "forwardPorts": [3000]
+}

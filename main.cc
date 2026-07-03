@@ -38,7 +38,7 @@
 #define MAX_RECV_RETRIES 5
 
 static log4cxx::LoggerPtr logger(log4cxx::Logger::getLogger("TFTPServer"));
-static std::atomic<bool> g_stop_flag{false}; // Global flag to indicate server shutdown
+static volatile std::sig_atomic_t g_stop_flag = 0; // Signal-safe shutdown flag
 
 /**
  * @enum OpCode
@@ -527,7 +527,7 @@ public:
         return ResultSuccess;
     }
     void Run() {
-        while (!g_stop_flag) {
+        while (g_stop_flag == 0) {
             char buffer[MAX_BUFFER_SIZE];
             sockaddr_in client_addr{};
             socklen_t client_len = sizeof(client_addr);
@@ -577,7 +577,7 @@ private:
 
 void signal_handler(int signum) {
     (void)signum;
-    g_stop_flag = true;
+    g_stop_flag = 1;
 }
 
 int main() {
